@@ -4,7 +4,7 @@
   <header class="py-4 bg-white/10 backdrop-blur-md text-white fixed top-0 left-0 w-full z-50 shadow-md">
     <nav class="flex container mx-auto px-4 items-center">
       <NuxtLink to="/" class="flex gap-2 items-center">
-        <span class="text-2xl font-bold tracking-wide">Portfolio</span>
+        <span class="text-2xl font-bold tracking-wide">Ivan Aryaz</span>
       </NuxtLink>
       <ul class="flex gap-6 ml-auto text-lg font-medium capitalize">
         <li>

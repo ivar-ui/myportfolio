@@ -1,203 +1,238 @@
 <template>
-    <!-- Background Video -->
-    <div v-if="isClient" class="fixed inset-0 z-[-2] overflow-hidden pointer-events-none">
-      <video autoplay muted loop playsinline class="w-full h-full object-cover scale-[1.1] blur-[1px]">
-        <source src="/about.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  
-    <!-- Overlay gradient -->
-    <div class="fixed inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent z-[-1] pointer-events-none"></div>
-  
-    <!-- Main Content with enter transition -->
-    <transition name="fade-slide-in" appear>
-      <main v-if="pageVisible" class="text-white min-h-screen px-4 py-24 relative z-10 overflow-y-auto">
-        <div class="max-w-5xl mx-auto space-y-20">
-  
-          <!-- About Me -->
-          <section id="about" class="text-center space-y-5 pt-40">
-            <h1 class="text-5xl font-extrabold tracking-wide drop-shadow-lg">About Me</h1>
-            <p class="text-lg max-w-3xl mx-auto leading-relaxed text-white/90">
-              Saya adalah mahasiswa Semester 4 dengan pengalaman dalam bidang Teknologi Informasi dan Multimedia, seperti troubleshooting, networking, perancangan software berbasis website, mobile, dan Internet of Things serta editing menggunakan beberapa bahasa pemrograman seperti php, dart, C++, dan python. Saya memiliki rasa ingin tahu yang tinggi, mampu bekerja secara kolaboratif dan individual, serta fokus dalam menyelesaikan tugas dan berkomitmen untuk memberikan hasil yang terbaik.
-            </p>
-            <div class="pt-4">
-              <svg @click="revealAndScroll" class="w-6 h-6 animate-bounce mx-auto cursor-pointer text-purple-300 hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </section>
-  
-          <!-- Details -->
-          <transition name="fade-slide-up">
-            <section v-show="showDetails" id="details" ref="detailsSection" class="relative space-y-32">
-  
-              <!-- Education -->
-              <div class="relative">
-                <h2 class="text-3xl font-bold mb-10 text-center">🎓 Education</h2>
-                <div class="absolute left-1/2 top-[28px] h-[186px] w-1 bg-purple-500/30 transform -translate-x-1/2"></div>
-                <div class="space-y-16">
-                  <div class="relative flex items-start">
-                    <div class="w-1/2 text-right pr-6">
-                      <h3 class="font-semibold">Computer and Network Engineering</h3>
-                      <p class="text-sm text-white/70">SMK Negeri 2 Bojonegoro · 2020 – 2023</p>
-                    </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-4 h-4 bg-purple-400 border-4 border-white rounded-full z-10"></div>
-                    <div class="w-1/2"></div>
-                  </div>
-                  <div class="relative flex items-start">
-                    <div class="w-1/2 text-right pr-6">
-                      <h3 class="font-semibold">Diploma III of Information Technology</h3>
-                      <p class="text-sm text-white/70">Universitas Brawijaya · 2023 – Now</p>
-                    </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-4 h-4 bg-purple-400 border-4 border-white rounded-full z-10"></div>
-                    <div class="w-1/2"></div>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Experience -->
-              <div class="relative">
-                <h2 class="text-3xl font-bold mb-10 text-center">💼 Experience</h2>
-                <div class="absolute left-1/2 top-[28px] h-[186px] w-1 bg-purple-500/30 transform -translate-x-1/2"></div>
-                <div class="space-y-16">
-                  <div class="relative flex items-start">
-                    <div class="w-1/2"></div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-4 h-4 bg-purple-400 border-4 border-white rounded-full z-10"></div>
-                    <div class="w-1/2 pl-6">
-                      <h3 class="font-semibold">Frontend Developer – Freelance</h3>
-                      <p class="text-sm text-white/70">2022 – Present</p>
-                      <p class="text-sm text-white/70">Developed responsive websites and UI animations using Nuxt and TailwindCSS for global clients.</p>
-                    </div>
-                  </div>
-                  <div class="relative flex items-start">
-                    <div class="w-1/2"></div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-4 h-4 bg-purple-400 border-4 border-white rounded-full z-10"></div>
-                    <div class="w-1/2 pl-6">
-                      <h3 class="font-semibold">Frontend Developer – Freelance</h3>
-                      <p class="text-sm text-white/70">2022 – Present</p>
-                      <p class="text-sm text-white/70">Developed responsive websites and UI animations using Nuxt and TailwindCSS for global clients.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Skills -->
-              <section class="flex justify-center">
-                <div class="text-center max-w-3xl">
-                  <h2 class="text-xl font-bold mb-6">🛠️ Skills</h2>
-                  <div class="mb-6">
-                    <h3 class="text-white/90 font-semibold mb-2">Programming & Tools</h3>
-                    <div class="flex flex-wrap justify-center gap-3">
-                      <span class="skill-chip">Nuxt</span>
-                      <span class="skill-chip">Vue.js</span>
-                      <span class="skill-chip">Tailwind CSS</span>
-                      <span class="skill-chip">JavaScript</span>
-                      <span class="skill-chip">REST API</span>
-                      <span class="skill-chip">Flutter</span>
-                      <span class="skill-chip">PHP</span>
-                      <span class="skill-chip">Python</span>
-                      <span class="skill-chip">C++</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 class="text-white/90 font-semibold mb-2">Software Skills</h3>
-                    <div class="flex flex-wrap justify-center gap-3">
-                      <span class="skill-chip">Visual Studio Code</span>
-                      <span class="skill-chip">Adobe Photoshop</span>
-                      <span class="skill-chip">Adobe Premiere Pro</span>
-                      <span class="skill-chip">XAMPP</span>
-                      <span class="skill-chip">Postman</span>
-                      <span class="skill-chip">Arduino IDE</span>
-                      <span class="skill-chip">MySQL Workbench</span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-  
-            </section>
-          </transition>
+  <section class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black">
+    <div class="max-w-5xl mx-auto space-y-24">
+      
+      <!-- Tentang Saya -->
+      <div
+        class="fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4"
+        ref="fadeEls"
+      >
+        <div class="w-64 aspect-[1/1]">
+          <img
+            src="/profile.jpeg"
+            alt="Foto Profil"
+            class="w-full h-full object-cover rounded-xl shadow-md"
+          />
         </div>
-      </main>
-    </transition>
-  </template>
-  
-  <script setup lang="ts">
-  
-  const showDetails = ref(false)
-  const isClient = ref(false)
-  const detailsSection = ref<HTMLElement | null>(null)
-  const pageVisible = ref(false)
-  
-  function revealAndScroll() {
-    showDetails.value = true
-    nextTick(() => {
-      setTimeout(() => {
-        detailsSection.value?.scrollIntoView({ behavior: 'smooth' })
-      }, 300)
-    })
-  }
-  
-  onMounted(() => {
-    isClient.value = true
-    setTimeout(() => {
-      pageVisible.value = true
-    }, 100)
-  })
-  </script>
-  
-  <style scoped>
-  .fade-slide-in-enter-active {
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  .fade-slide-in-enter-from {
+        <div class="flex-1">
+          <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
+          <p class="text-white/80 leading-relaxed">
+            Saya adalah mahasiswa Semester 4 yang memiliki ketertarikan dan pengalaman di bidang Teknologi Informasi dan Multimedia. Keahlian saya mencakup troubleshooting, jaringan komputer, serta pengembangan perangkat lunak berbasis web dan mobile. Saya juga memiliki pengalaman dalam pengembangan sistem berbasis Internet of Things (IoT), juga mahir dalam menggunakan beberapa bahasa pemrograman dan aplikasi. 
+
+Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari hal baru, mampu bekerja secara mandiri maupun kolaboratif dalam tim, serta berkomitmen untuk memberikan hasil kerja terbaik.          </p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
+        <h2 class="text-3xl font-bold">Skills</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div
+            v-for="skill in skills"
+            :key="skill.name"
+            class="relative group overflow-hidden rounded-xl cursor-pointer"
+            @mouseenter="hovered = skill.name"
+            @mouseleave="hovered = ''"
+          >
+            <div
+              class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
+              :class="{ 'translate-x-full': hovered === skill.name }"
+            ></div>
+
+            <div
+              class="relative z-10 flex items-center gap-4 p-4 transition-opacity duration-300"
+              :class="{ 'opacity-0': hovered === skill.name }"
+            >
+              <img :src="skill.logo" :alt="skill.name" class="h-12 w-12 object-contain" />
+              <p class="font-semibold text-lg">{{ skill.name }}</p>
+            </div>
+
+            <div
+              v-if="hovered === skill.name"
+              class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
+            >
+              <p class="text-white-400 text-sm font-semibold">{{ skill.level }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Tools -->
+      <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
+        <h2 class="text-3xl font-bold">Software Tools</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Coding Tools -->
+          <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
+            <h3 class="text-xl font-semibold mb-6">Coding Tools</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                v-for="tool in codingTools"
+                :key="tool.name"
+                class="relative group overflow-hidden rounded-xl cursor-pointer bg-white/10 p-3"
+                @mouseenter="hovered = tool.name"
+                @mouseleave="hovered = ''"
+              >
+                <div
+                  class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
+                  :class="{ 'translate-x-full': hovered === tool.name }"
+                ></div>
+
+                <div
+                  class="relative z-10 flex items-center gap-3 transition-opacity duration-300"
+                  :class="{ 'opacity-0': hovered === tool.name }"
+                >
+                  <img :src="tool.logo" :alt="tool.name" class="w-8 h-8 object-contain" />
+                  <span class="text-white">{{ tool.name }}</span>
+                </div>
+
+                <div
+                  v-if="hovered === tool.name"
+                  class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
+                >
+                  <p class="text-white-400 text-sm font-semibold">{{ tool.level }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Non-Coding Tools -->
+          <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
+            <h3 class="text-xl font-semibold mb-6">Non-Coding Tools</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                v-for="tool in nonCodingTools"
+                :key="tool.name"
+                class="relative group overflow-hidden rounded-xl cursor-pointer bg-white/10 p-3"
+                @mouseenter="hovered = tool.name"
+                @mouseleave="hovered = ''"
+              >
+                <div
+                  class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
+                  :class="{ 'translate-x-full': hovered === tool.name }"
+                ></div>
+
+                <div
+                  class="relative z-10 flex items-center gap-3 transition-opacity duration-300"
+                  :class="{ 'opacity-0': hovered === tool.name }"
+                >
+                  <img :src="tool.logo" :alt="tool.name" class="w-8 h-8 object-contain" />
+                  <span class="text-white">{{ tool.name }}</span>
+                </div>
+
+                <div
+                  v-if="hovered === tool.name"
+                  class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
+                >
+                  <p class="text-white-400 text-sm font-semibold">{{ tool.level }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const hovered = ref('')
+const fadeEls = ref([])
+
+const skills = [
+  { name: 'HTML', logo: '/logos/html.svg', level: 'Intermediate' },
+  { name: 'JavaScript', logo: '/logos/javascript.svg', level: 'Intermediate' },
+  { name: 'Tailwind', logo: '/logos/tailwind.svg', level: 'Beginner' },
+  { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
+  { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
+  { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
+]
+
+const codingTools = [
+  { name: 'VSCode', logo: '/logos/vscode.svg', level: 'Intermediate' },
+  { name: 'MySQL', logo: '/logos/mysql.svg', level: 'Intermediate' },
+  { name: 'Postman', logo: '/logos/postman.svg', level: 'Beginner' },
+  { name: 'Git', logo: '/logos/github.svg', level: 'Intermediate' },
+]
+
+const nonCodingTools = [
+  { name: 'Photoshop', logo: '/logos/photoshop.svg', level: 'Intermediate' },
+  { name: 'Premiere', logo: '/logos/premiere.svg', level: 'Intermediate' },
+  { name: 'Lightroom', logo: '/logos/lightroom.svg', level: 'Intermediate' },
+  { name: 'Figma', logo: '/logos/figma.svg', level: 'Intermediate' },
+]
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-enter')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+
+  const elements = document.querySelectorAll('.fade-section')
+  elements.forEach(el => observer.observe(el))
+})
+</script>
+
+<style scoped>
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(16px);
   }
-  
-  .fade-slide-up-enter-active,
-  .fade-slide-up-leave-active {
-    transition: opacity 1s ease, transform 1s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .fade-slide-up-enter-from,
-  .fade-slide-up-leave-to {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  
-  html {
-    scroll-behavior: smooth !important;
-  }
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    width: 100%;
-    min-height: 100vh;
-  }
-  * {
-    box-sizing: border-box;
-    max-width: 100vw;
-  }
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .skill-chip {
-    background: rgba(216, 180, 254, 0.8);
-    padding: 0.4rem 1rem;
-    font-size: 0.875rem;
-    color: #1a1a1a;
-    border-radius: 9999px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  </style>
-  
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-enter {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+img {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+/* Custom Scrollbar - Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Custom Scrollbar - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+</style>
