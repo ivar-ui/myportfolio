@@ -165,6 +165,7 @@ const skills = [
   { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
   { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
   { name: 'C++', logo: '/logos/c.svg', level: 'Intermediate' },
+  { name: 'SQL', logo: '/logos/sql.svg', level: 'Intermediate' },
 ]
 
 const codingTools = [
