@@ -166,7 +166,6 @@ const skills = [
   { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
   { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
   { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
-  { name: 'Nuxt.Js', logo: '/logos/.svg', level: 'Beginner' },
 ]
 
 const codingTools = [
