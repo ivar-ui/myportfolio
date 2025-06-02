@@ -1,6 +1,6 @@
 <template>
   <section class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black">
-    <!-- Notifikasi Pop-up -->
+    <!-- Notif-->
     <transition name="slide-fade">
        <div
     v-if="showNotif"
@@ -12,7 +12,7 @@
     </transition>
 
     <div class="max-w-5xl mx-auto space-y-24">
-      <!-- Tentang Saya -->
+      <!-- Box atas yg ada foto -->
       <div
         class="fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4"
         ref="fadeEls"
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <!-- Skills -->
+      <!-- Skill -->
       <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
         <h2 class="text-3xl font-bold">Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
