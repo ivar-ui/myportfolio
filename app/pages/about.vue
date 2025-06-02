@@ -1,7 +1,18 @@
 <template>
   <section class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black">
+    <!-- Notifikasi Pop-up -->
+    <transition name="slide-fade">
+      <div
+        v-if="showNotif"
+        class="fixed top-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl text-white shadow-lg z-50"
+        style="background: linear-gradient(	#2e2e2e);"
+
+      >
+        Tekan box untuk melihat level!
+      </div>
+    </transition>
+
     <div class="max-w-5xl mx-auto space-y-24">
-      
       <!-- Tentang Saya -->
       <div
         class="fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4"
@@ -17,9 +28,10 @@
         <div class="flex-1">
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
           <p class="text-white/80 leading-relaxed">
-            Saya adalah mahasiswa Semester 4 yang memiliki ketertarikan dan pengalaman di bidang Teknologi Informasi dan Multimedia. Keahlian saya mencakup troubleshooting, jaringan komputer, serta pengembangan perangkat lunak berbasis web dan mobile. Saya juga memiliki pengalaman dalam pengembangan sistem berbasis Internet of Things (IoT), juga mahir dalam menggunakan beberapa bahasa pemrograman dan aplikasi. 
+            Saya adalah mahasiswa Semester 4 yang memiliki ketertarikan dan pengalaman di bidang Teknologi Informasi dan Multimedia. Keahlian saya mencakup troubleshooting, jaringan komputer, serta pengembangan perangkat lunak berbasis web dan mobile. Saya juga memiliki pengalaman dalam pengembangan sistem berbasis Internet of Things (IoT), juga mahir dalam menggunakan beberapa bahasa pemrograman dan aplikasi.
 
-Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari hal baru, mampu bekerja secara mandiri maupun kolaboratif dalam tim, serta berkomitmen untuk memberikan hasil kerja terbaik.          </p>
+            Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari hal baru, mampu bekerja secara mandiri maupun kolaboratif dalam tim, serta berkomitmen untuk memberikan hasil kerja terbaik.
+          </p>
         </div>
       </div>
 
@@ -61,7 +73,6 @@ Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari ha
       <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
         <h2 class="text-3xl font-bold">Software Tools</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
           <!-- Coding Tools -->
           <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
             <h3 class="text-xl font-semibold mb-6">Coding Tools</h3>
@@ -129,10 +140,8 @@ Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari ha
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -142,6 +151,14 @@ import { ref, onMounted } from 'vue'
 
 const hovered = ref('')
 const fadeEls = ref([])
+const showNotif = ref(false)
+
+const triggerNotif = () => {
+  showNotif.value = true
+  setTimeout(() => {
+    showNotif.value = false
+  }, 2000)
+}
 
 const skills = [
   { name: 'HTML', logo: '/logos/html.svg', level: 'Intermediate' },
@@ -150,6 +167,7 @@ const skills = [
   { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
   { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
   { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
+  { name: 'Nuxt.Js', logo: '/logos/.svg', level: 'Beginner' },
 ]
 
 const codingTools = [
@@ -181,6 +199,8 @@ onMounted(() => {
 
   const elements = document.querySelectorAll('.fade-section')
   elements.forEach(el => observer.observe(el))
+
+  triggerNotif()
 })
 </script>
 
@@ -209,15 +229,13 @@ img {
   transition: transform 0.3s ease;
 }
 
-/* Custom Scrollbar - Chrome, Safari, Edge */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
@@ -225,14 +243,25 @@ img {
   background-clip: content-box;
   transition: background-color 0.3s ease;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-
-/* Custom Scrollbar - Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Transisi Notifikasi */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-fade-enter-from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 </style>
