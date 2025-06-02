@@ -3,13 +3,12 @@
     <!-- Notifikasi Pop-up -->
     <transition name="slide-fade">
       <div
-        v-if="showNotif"
-        class="fixed top-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl text-white shadow-lg z-50"
-        style="background: linear-gradient(	#2e2e2e);"
-
-      >
-        Tekan box untuk melihat level!
-      </div>
+    v-if="showNotif"
+    class="fixed top-6 inset-x-4 sm:left-1/2 sm:-translate-x-1/2 sm:inset-x-auto max-w-sm mx-auto px-4 py-3 rounded-xl text-white shadow-lg z-50 text-center"
+    style="background-color: #2e2e2e;"
+  >
+    Tekan box untuk melihat level!
+  </div>
     </transition>
 
     <div class="max-w-5xl mx-auto space-y-24">
