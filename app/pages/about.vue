@@ -28,7 +28,6 @@
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
           <p class="text-white/80 leading-relaxed">
             Saya adalah mahasiswa Semester 4 yang memiliki ketertarikan dan pengalaman di bidang Teknologi Informasi dan Multimedia. Keahlian saya mencakup troubleshooting, jaringan komputer, serta pengembangan perangkat lunak berbasis web dan mobile. Saya juga memiliki pengalaman dalam pengembangan sistem berbasis Internet of Things (IoT), juga mahir dalam menggunakan beberapa bahasa pemrograman dan aplikasi.
-
             Saya memiliki rasa ingin tahu yang tinggi, senantiasa bersemangat mempelajari hal baru, mampu bekerja secara mandiri maupun kolaboratif dalam tim, serta berkomitmen untuk memberikan hasil kerja terbaik.
           </p>
         </div>
