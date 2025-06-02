@@ -7,7 +7,7 @@
     class="fixed top-6 left-1/2 -translate-x-1/2 w-[90vw] max-w-[300px] px-4 py-2 rounded-lg text-white shadow-lg z-50 text-center text-sm sm:text-base"
     style="background-color: #2e2e2e;"
   >
-    Tekan box untuk melihat tingkat skill saya!
+    Tekan box untuk melihat tingkat skill!
   </div>
     </transition>
 
