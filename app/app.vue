@@ -109,4 +109,10 @@ onMounted(() => {
   transition: transform 0.05s linear;
   will-change: transform, opacity;
 }
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: none !important;
+  }
+}
+
 </style>
