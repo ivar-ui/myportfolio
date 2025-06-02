@@ -4,7 +4,7 @@
     <transition name="slide-fade">
        <div
     v-if="showNotif"
-    class="fixed top-6 inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 max-w-xs mx-auto px-4 py-2 rounded-lg text-white shadow-lg z-50 text-center text-sm sm:text-base"
+    class="fixed top-6 left-1/2 -translate-x-1/2 w-[90vw] max-w-[300px] px-4 py-2 rounded-lg text-white shadow-lg z-50 text-center text-sm sm:text-base"
     style="background-color: #2e2e2e;"
   >
     Tekan box untuk melihat level!
