@@ -163,8 +163,8 @@ const skills = [
   { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
   { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
   { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
-  { name: 'C++', logo: '/logos/c.svg', level: 'Intermediate' },
-  { name: 'SQL', logo: '/logos/sql.svg', level: 'Intermediate' },
+  { name: 'C++', logo: '/logos/c.svg', level: 'Beginner' },
+  { name: 'GoLang', logo: '/logos/golang.svg', level: 'Beginner' },
   { name: 'Tailwind', logo: '/logos/tailwind.svg', level: 'Beginner' },
 ]
 
