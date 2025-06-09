@@ -2,8 +2,42 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import * as THREE from 'three'
 
+// ==== TYPING EFFECT ====
+const typingText = ref('')
+const textsToType = ['Hola!.', 'Ivan Arya.', 'Backend Developer.']
+let textIndex = 0
+let charIndex = 0
+let typingInterval
+
+function typeNextLetter() {
+  if (textIndex >= textsToType.length) textIndex = 0
+
+  const currentText = textsToType[textIndex]
+  typingText.value = currentText.slice(0, charIndex + 1)
+  charIndex++
+
+  if (charIndex === currentText.length) {
+    clearInterval(typingInterval)
+    setTimeout(() => {
+      typingInterval = setInterval(typeNextLetter, 100)
+      charIndex = 0
+      textIndex++
+    }, 2000)
+  }
+}
+
+onMounted(() => {
+  typingInterval = setInterval(typeNextLetter, 100)
+})
+
+onUnmounted(() => {
+  clearInterval(typingInterval)
+})
+
+// ==== PARTICLE EFFECT ====
 const canvasRef = ref(null)
-let mouse = new THREE.Vector2(0, 0)
+
+let mouse = new THREE.Vector2()
 let raycaster = new THREE.Raycaster()
 
 const handleMouseMove = (e) => {
@@ -48,14 +82,11 @@ onMounted(() => {
     scene.background = new THREE.Color(0x03000a)
     scene.fog = new THREE.Fog(0x0a0011, 30, 80)
 
-    const ambient = new THREE.AmbientLight(0x440066, 0.5)
-    scene.add(ambient)
+    const ambientLight = new THREE.AmbientLight(0x440066, 0.5)
+    const pointLight = new THREE.PointLight(0xff00ff, 1, 100)
+    pointLight.position.set(0, 0, 25)
+    scene.add(ambientLight, pointLight)
 
-    const light = new THREE.PointLight(0xff00ff, 1, 100)
-    light.position.set(0, 0, 25)
-    scene.add(light)
-
-    // background dots
     const bgGeometry = new THREE.BufferGeometry()
     const bgCount = 1200
     const bgPositions = new Float32Array(bgCount * 3)
@@ -86,23 +117,17 @@ onMounted(() => {
     for (let i = 0; i < particleCount; i++) {
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(2 * Math.random() - 1)
-
       const x = radius * Math.sin(phi) * Math.cos(theta)
       const y = radius * Math.sin(phi) * Math.sin(theta)
       const z = radius * Math.cos(phi)
 
-      positions[i * 3] = x
-      positions[i * 3 + 1] = y
-      positions[i * 3 + 2] = z
+      positions[i * 3] = x * 5
+      positions[i * 3 + 1] = y * 5
+      positions[i * 3 + 2] = z * 5
 
       initialPositions[i * 3] = x
       initialPositions[i * 3 + 1] = y
       initialPositions[i * 3 + 2] = z
-
-      // Animasi partikel masuk (scale out + opacity)
-      positions[i * 3] *= 5
-      positions[i * 3 + 1] *= 5
-      positions[i * 3 + 2] *= 5
     }
 
     const geometry = new THREE.BufferGeometry()
@@ -138,17 +163,13 @@ onMounted(() => {
 
       raycaster.setFromCamera(mouse, camera)
       const intersects = raycaster.intersectObject(sphereMesh)
-      let mousePos3D = null
-      if (intersects.length > 0) {
-        mousePos3D = intersects[0].point
-      }
+      let mousePos3D = intersects.length > 0 ? intersects[0].point : null
 
       const pos = particles.geometry.attributes.position.array
 
       for (let i = 0; i < particleCount; i++) {
         const ix = i * 3
 
-        // Intro animation (partikel masuk)
         if (introProgress < 1) {
           const factor = 1 - introProgress
           pos[ix] = initialPositions[ix] * factor + positions[ix] * (1 - factor)
@@ -160,15 +181,11 @@ onMounted(() => {
           pos[ix + 2] += velocities[ix + 2]
         }
 
-        const worldParticle = new THREE.Vector3(pos[ix], pos[ix + 1], pos[ix + 2])
-        worldParticle.applyMatrix4(particles.matrixWorld)
-
         if (mousePos3D && introProgress >= 1) {
-          const dx = worldParticle.x - mousePos3D.x
-          const dy = worldParticle.y - mousePos3D.y
-          const dz = worldParticle.z - mousePos3D.z
+          const dx = pos[ix] - mousePos3D.x
+          const dy = pos[ix + 1] - mousePos3D.y
+          const dz = pos[ix + 2] - mousePos3D.z
           const dist = Math.sqrt(dx * dx + dy * dy + dz * dz)
-
           if (dist < explodeRadius) {
             const force = (1 - dist / explodeRadius) * 0.3
             velocities[ix] += (dx / dist) * force
@@ -226,11 +243,14 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', handleMouseMove)
+  clearInterval(typingInterval)
 })
 </script>
 
+
 <template>
   <div class="relative w-full h-full overflow-hidden bg-black">
+    
     <canvas ref="canvasRef" class="fixed inset-0 w-full h-full block z-[-2]"></canvas>
 
     <div
@@ -240,7 +260,10 @@ onUnmounted(() => {
     <div
       class="fixed left-0 top-1/2 transform -translate-y-1/2 pl-10 md:pl-20 flex flex-col items-start justify-center text-white z-10 space-y-10 animate-slide-in"
     >
-      <h1 class="text-5xl md:text-6xl font-bold text-white">¡Hola!</h1>
+    <h1 class="text-5xl md:text-6xl font-bold text-white min-h-[3rem]">
+  {{ typingText }}
+  <span class="border-r-2 border-white animate-blink ml-1"></span>
+</h1>
 
       <div class="flex space-x-6">
         <a href="https://www.linkedin.com/in/ivan-aryaputra" target="_blank"
@@ -281,6 +304,19 @@ onUnmounted(() => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-start infinite;
 }
 
 .animate-fade-in {
