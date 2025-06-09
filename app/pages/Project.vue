@@ -220,7 +220,7 @@ const handleReveal = () => {
 
 const projects = [
   { title: 'Donasi App (Flutter + PHP)', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.jpg' },
-  { title: 'Rent Website', description: 'Merancang backend website rental antara customer dan admin menggunakan PHP, MySql yang memiliki fitur CRUD.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.jpg' },
+  { title: 'Rent Website', description: 'Merancang backend website rental antara customer dan admin menggunakan PHP, MySql yang memiliki fitur CRUD.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png' },
   { title: 'IoT Garbage Filtering Sistem', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan arduino uno.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.jpg' },
 ]
 
