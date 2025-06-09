@@ -219,16 +219,16 @@ const handleReveal = () => {
 }
 
 const projects = [
-  { title: 'Donasi App (Flutter + PHP)', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png' },
+  { title: 'Fundraising Mobile App (On Progress)', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png' },
   { title: 'Rent Website', description: 'Merancang backend website rental antara customer dan admin menggunakan PHP, MySql yang memiliki fitur CRUD.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png' },
-  { title: 'IoT Garbage Filtering Sistem', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan arduino uno.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png' },
+  { title: 'IoT Garbage Filtering System (On Progress)', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan arduino uno.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png' },
 ]
 
 const multimedia = [
   { title: 'Company Profile Video Gumelaring Sasangka Aji', description: 'Video kampanye Internasional Wayang Karakter Brawijayan berdurasi total 10 menit lengkap dengan efek dan sound design.', tags: ['Premiere Pro', 'After Effects'], image: '/projects/gsa.JPG' },
   { title: 'Brawijaya One Learning', description: 'Video editor : video pembelajaran jarak jauh beberapa fakultas Universitas Brawijaya.', tags: ['Adobe Premiere', 'Capcut','Video Editor'], image: '/projects/brone.jpeg' },
   { title: 'Event Documentation', description: 'Video dokumentasi event MICE kelas N3C Administrasi Bisnis.', tags: ['Video Editing', 'Cinematic', 'Sound Design'], image: '/projects/event.jpg' },
-  { title: 'Kultum : Pimipnan Daerah Muhammadiyah Kota Malang', description: 'Take dan editing 30 video kultum bulan suci ramadhan para Pimpinan Muhammadiyah Se-Kota Malang', tags: ['Videography', 'Video Editing'], image: '/projects/kultum.jpeg' },
+  { title: 'Kultum : Pimipinan Daerah Muhammadiyah Kota Malang', description: 'Take dan editing 30 video kultum bulan suci ramadhan para Pimpinan Muhammadiyah Se-Kota Malang', tags: ['Videography', 'Video Editing'], image: '/projects/kultum.jpeg' },
   { title: 'Kampanye Wayang Karakter : Brawiijayan Tosan Aji Fest', description: 'Take video dan Editing highlight dengan tema Karakter Brawijayan Lakon Pangeran Sutasoma.', tags: ['Directing', 'Editing', 'Videography'], image: '/projects/gsa2.jpeg' },
   { title: 'Company Profile D-III Adminitrasi Bisnis Fakultas Vokasi', description: 'Take video company profile Program Studi Administrasi Bisnis 2025.', tags: ['Videographer'], image: '/projects/comprof.jpeg' },
 ]
