@@ -4,7 +4,7 @@ import * as THREE from 'three'
 
 // ==== TYPING EFFECT ====
 const typingText = ref('')
-const textsToType = ['Hola!.', 'Backend Developer.']
+const textsToType = ['Hola!', 'Ivan AryaPutra', 'Backend Developer.']
 let textIndex = 0
 let charIndex = 0
 let typingInterval
