@@ -28,7 +28,7 @@
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
           <p class="text-white/80 leading-relaxed">
           Mahasiswa semester 4 dengan minat mendalam dan pengalaman luas di bidang Teknologi Informasi dan Multimedia. Memiliki pengalaman cukup dalam troubleshooting, konfigurasi jaringan komputer, pengelolaan database serta memiliki keahlian dalam pengembangan perangkat lunak web dan mobile, termasuk sistem berbasis Internet of Things (IoT). 
-          Menguasai berbagai bahasa pemrograman seperti html, python, dart, php dan tools relevan. Proaktif dalam mempelajari hal baru, mampu bekerja secara mandiri maupun dalam tim, mampu untuk memanajemen tim, serta berdedikasi untuk mencapai hasil yang optimal.       
+          Menguasai berbagai bahasa pemrograman seperti html, python, dart, php dan tools relevan. Proaktif dalam mempelajari hal baru, mampu bekerja secara mandiri maupun dalam tim, mampu untuk memanajemen tim, serta berdedikasi untuk mencapai hasil yang optimal.     </p>  
         </div>
       </div>
 
