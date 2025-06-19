@@ -19,31 +19,18 @@
   ></div>
 
   <!-- Hero / Intro Section -->
-  <section
-    class="h-screen flex flex-col items-center justify-center text-center text-white space-y-6 animate-fade-in"
-  >
+  <section class="h-screen flex flex-col items-center justify-center text-center text-white space-y-6 animate-fade-in">
     <h1 class="text-5xl md:text-6xl font-bold">My Project</h1>
     <p class="text-gray-300 text-lg">Scroll down to see all my works</p>
     <button @click="scrollToProjects" class="focus:outline-none">
-      <svg
-        class="w-8 h-8 animate-bounce text-white"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg class="w-8 h-8 animate-bounce text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
   </section>
 
   <!-- Page Content -->
-  <main
-    v-if="showContent"
-    ref="projectSection"
-    class="relative z-10 min-h-screen px-4 py-20 text-white max-w-6xl mx-auto animate-fade-up"
-  >
+  <main v-if="showContent" ref="projectSection" class="relative z-10 min-h-screen px-4 py-20 text-white max-w-6xl mx-auto animate-fade-up">
     <div class="space-y-16">
       <!-- Header -->
       <section class="text-center space-y-4">
@@ -58,23 +45,35 @@
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="bg-black/20 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal"
+          class="bg-black/20 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal relative"
         >
-          <img
-            :src="project.image"
-            :alt="project.title"
-            class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow"
-          />
-          <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
-          <p class="text-sm text-gray-300 mb-4">{{ project.description }}</p>
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="(tag, i) in project.tags"
-              :key="i"
-              class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black"
-            >
-              {{ tag }}
-            </span>
+          <img :src="project.image" :alt="project.title" class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow" />
+
+          <!-- Title -->
+          <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ project.title }}</h3>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ project.description }}</p>
+
+          <!-- Tags + Icons Row -->
+          <div class="flex justify-between items-center pt-2">
+            <div class="flex flex-wrap gap-2">
+              <span v-for="(tag, i) in project.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black">
+                {{ tag }}
+              </span>
+            </div>
+            <div class="flex gap-3">
+              <a :href="project.github" target="_blank" class="text-white hover:text-purple-400 transition" title="View on GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.3 9.42 7.87 10.96.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.38-3.87-1.38-.52-1.34-1.28-1.7-1.28-1.7-1.05-.7.08-.69.08-.69 1.17.08 1.79 1.2 1.79 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.5.12-3.14 0 0 .97-.31 3.2 1.2.92-.26 1.9-.39 2.88-.39.97 0 1.95.13 2.87.39 2.23-1.51 3.2-1.2 3.2-1.2.65 1.64.25 2.84.12 3.14.75.81 1.2 1.84 1.2 3.1 0 4.42-2.7 5.4-5.26 5.68.42.36.79 1.1.79 2.22v3.29c0 .31.21.66.8.55 4.56-1.54 7.85-5.86 7.85-10.96C23.5 5.74 18.27.5 12 .5z"/>
+                </svg>
+              </a>
+              <a :href="project.demo" target="_blank" class="text-white hover:text-green-400 transition" title="Live Demo">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M15 3H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-4h-2v4H5V5h10v4h2V5a2 2 0 00-2-2zm4.71 6.29a1 1 0 00-1.42 0l-5 5a1 1 0 000 1.42l5 5a1 1 0 001.42-1.42L16.41 15H22v-2h-5.59l3.3-3.29a1 1 0 000-1.42z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -99,9 +98,15 @@
             :alt="project.title"
             class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow"
           />
-          <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
-          <p class="text-sm text-gray-300 mb-4">{{ project.description }}</p>
-          <div class="flex flex-wrap gap-2">
+
+          <!-- Title -->
+          <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ project.title }}</h3>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ project.description }}</p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 pt-2">
             <span
               v-for="(tag, i) in project.tags"
               :key="i"
