@@ -224,9 +224,9 @@ const handleReveal = () => {
 }
 
 const projects = [
-  { title: 'Fundraising Mobile App (On Progress)', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png' },
+  { title: 'Fundraising Mobile App', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png' },
   { title: 'YukRental, Motorcycle Rent Website', description: 'Merancang backend CRUD website rental yang dapat diakses oleh customer dan admin menggunakan PHP, MySql.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png' },
-  { title: 'Garbage Filtering System (On Progress)', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png' },
+  { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png' },
 ]
 
 const multimedia = [
