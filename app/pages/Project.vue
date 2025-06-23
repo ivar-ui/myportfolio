@@ -224,9 +224,11 @@ const handleReveal = () => {
 }
 
 const projects = [
-  { title: 'Fundraising Mobile App', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png' },
-  { title: 'YukRental, Motorcycle Rent Website', description: 'Merancang backend CRUD website rental yang dapat diakses oleh customer dan admin menggunakan PHP, MySql.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png' },
-  { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png' },
+  { title: 'Fundraising Mobile App', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
+  { title: 'YukRental, Motorcycle Rent Website', description: 'Merancang backend CRUD website rental yang dapat diakses oleh customer dan admin menggunakan MySql Database.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png', github: 'https://github.com/ivar-ui/garbage_filtering', demo: 'https://ivardeploy.great-site.net/csyukrental/' },
+  { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png', github: 'https://github.com/username/fundraising-app', demo: 'https://your-demo-link.com/fundraising-app' },
+  { title: 'Design UI/UX Reshine Mobile App', description: 'Merancang dan mengembangkan design UI aplikasi jual beli template design dan jasa joki multimedia.', tags: ['Figma', 'C++', 'Php'], image: '/projects/uiux.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/design/HqhsgmEg9OHXiHjzlvk1rp/Userflow-IMK?node-id=0-1' },
+  { title: 'Design UI/UX Home gardening Mobile App', description: 'Merancang dan mengembangkan design UI aplikasi jual beli template design dan jasa joki multimedia.', tags: ['Figma', 'C++', 'Php'], image: '/projects/uiux.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/proto/AnfJauFzqWtu2zQY7EYbEC/Home-Garden?page-id=101%3A1295&type=design&node-id=114-1702&viewport=-364%2C683%2C0.18&t=bq4XDuHRKkWVRn8J-1&scaling=scale-down&starting-point-node-id=114%3A1702' },
 ]
 
 const multimedia = [
