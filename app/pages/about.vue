@@ -158,7 +158,7 @@ const triggerNotif = () => {
 }
 
 const skills = [
-  { name: 'HTML', logo: '/logos/html.svg', level: 'Intermediate' },
+  { name: 'Next.Js', logo: '/logos/nextjs.svg', level: 'Intermediate' },
   { name: 'JavaScript', logo: '/logos/javascript.svg', level: 'Intermediate' },
   { name: 'Python', logo: '/logos/python.svg', level: 'Intermediate' },
   { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
