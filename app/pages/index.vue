@@ -274,7 +274,7 @@ onUnmounted(() => {
           class="w-24 h-24 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition duration-300">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-10 h-10 invert" />
         </a>
-        <a href="https://www.behance.net/fullsetnominus" target="_blank"
+        <a href="https://www.behance.net/gallery/220316429/Graphic-Designer-Socmed-Specialist-Portfolio" target="_blank"
           class="w-24 h-24 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition duration-300">
           <img src="https://cdn-icons-png.flaticon.com/512/145/145799.png" class="w-10 h-10" />
         </a>
