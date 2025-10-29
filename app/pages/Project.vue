@@ -77,6 +77,49 @@
         </div>
       </section>
 
+      <!-- UI/UX Project Section -->
+      <section class="text-center space-y-4 pt-10">
+        <h2 class="text-3xl md:text-4xl font-bold">UI/UX Project</h2>
+        <p class="text-lg max-w-2xl mx-auto text-gray-300">
+          Koleksi desain antarmuka dan pengalaman pengguna untuk aplikasi mobile dan website.
+        </p>
+      </section>
+
+      <!-- UI/UX Project Cards -->
+      <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          v-for="(item, index) in uiuxProjects"
+          :key="index"
+          class="bg-black/30 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal"
+        >
+          <img :src="item.image" :alt="item.title" class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow" />
+          <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ item.title }}</h3>
+          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ item.description }}</p>
+
+          <div class="flex justify-between items-center pt-2">
+            <div class="flex flex-wrap gap-2">
+              <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black">{{ tag }}</span>
+            </div>
+            <div class="flex gap-3">
+              <a :href="item.github" target="_blank" class="text-white hover:text-purple-400 transition" title="GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.3 9.42 7.87 10.96.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.38-3.87-1.38-.52-1.34-1.28-1.7-1.28-1.7-1.05-.7.08-.69.08-.69 1.17.08 1.79 1.2 1.79 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.5.12-3.14 0 0 .97-.31 3.2 1.2.92-.26 1.9-.39 2.88-.39.97 0 1.95.13 2.87.39 2.23-1.51 3.2-1.2 3.2-1.2.65 1.64.25 2.84.12 3.14.75.81 1.2 1.84 1.2 3.1 0 4.42-2.7 5.4-5.26 5.68.42.36.79 1.1.79 2.22v3.29c0 .31.21.66.8.55 4.56-1.54 7.85-5.86 7.85-10.96C23.5 5.74 18.27.5 12 .5z"
+                  />
+                </svg>
+              </a>
+              <a :href="item.demo" target="_blank" class="text-white hover:text-green-400 transition" title="Live Demo">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M15 3H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-4h-2v4H5V5h10v4h2V5a2 2 0 00-2-2zm4.71 6.29a1 1 0 00-1.42 0l-5 5a1 1 0 000 1.42l5 5a1 1 0 001.42-1.42L16.41 15H22v-2h-5.59l3.3-3.29a1 1 0 000-1.42z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Multimedia Section -->
       <section class="text-center space-y-4 pt-10">
         <h2 class="text-3xl md:text-4xl font-bold">Multimedia</h2>
@@ -115,15 +158,22 @@ const projectSection = ref<HTMLElement | null>(null)
 const overlayOpacity = ref(0)
 
 const projects = ref([
+  { title: 'Pemasangan CCTV baru Auditorium BG Munaf Dept. Teknik Perkapalan ITS', description: 'Melakukan penarikan kabel UTP sebanyak 8 buah, melakukan konfigurasi Network Digital Recorder, dan Pemasangan kamera CCTV, serta melakukan konfigurasi untuk monitoring remote CCTV ', tags: ['DVR/NVR', 'Config', 'Network'], image: '/projects/perkapalanits.jpg'},
+  { title: 'Pemindahan dan Membangun Ulang Jaringan Komputer Dept. Teknik Mesin ITS', description: 'Melakukan pemindahan Wall Mounted Rack serta melakukan pembaruan yang meliputi penarikan fiber optic dan kabel UTP, melakukan splicing kabel Fiber Optic, melakukan pemasangan switch manageable dan konfigurasi jaringan komputer yang baru dirancang', tags: ['Config', 'Network', 'Switch'], image: '/projects/mesinits.jpg'},
+  { title: 'Project Dir. Pengelolaan Infrastruktur, Lingkungan, dan Operasional UNAIR ', description: 'Membangun jaringan komputer pada ruangan baru, pekerjaan meliputi pemasangan kabel kelistrikan, penarikan kabel fiber optik, splicing kabel fiber optic, penarikan kabel UTP sebanyak 40 buah, dan pemasangan switch manageable', tags: ['Network', 'Config', 'Troubleshoot'], image: '/projects/kahuripanlt3.jpg'},
+  { title: 'Project Jaringan Komputer Laboratorium Komputer Fakultas FISIP UNAIR', description: 'Membangun jaringan komputer untuk Lab Komputer, pengerjaan diantara lain adalah melakukan splicing Fiber Optik untuk backbone internet, penarikan kabel UTP sebanyak 40 buah, memasang Switch Manageable, merakit dan konfigurasi 40 buah PC', tags: ['Network', 'Config', 'Switch'], image: '/projects/fisipunair.jpg'},
   { title: 'Fundraising Mobile App', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
   { title: 'YukRental, Motorcycle Rent Website', description: 'Merancang backend CRUD website rental yang dapat diakses oleh customer dan admin menggunakan MySql Database.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png', github: 'https://github.com/ivar-ui/yukrental', demo: 'https://ivardeploy.great-site.net/csyukrental/' },
   { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png', github: 'https://github.com/ivar-ui/garbage_filtering_sistem', demo: 'https://github.com/ivar-ui/garbage_filtering_sistem' },
   { title: 'Frent Agriculture Website', description: 'Merancang dan mengembangkan website rental dan jual beli produk pertanian berbasis Internet of Things.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/frent.png', github: 'https://github.com/ivar-ui/frentagricult', demo: 'https://frentagricult.netlify.app/' },
+])
+
+const uiuxProjects = ref([
   { title: 'Design UI/UX digihub Website', description: 'Merancang dan mengembangkan design UI website bussiness plan bertajuk DigiHub.', tags: ['Figma', 'Javascript', 'Php'], image: '/projects/digihub.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/proto/2ZEoQZMWLKWnxJ7yOc34i4/Digihub-Website?node-id=0-1&t=dJpEJgtNjIUpG5GM-1' },
   { title: 'Design UI/UX Reshine Mobile App', description: 'Merancang design UI aplikasi mobile jual beli template design dan jasa joki multimedia.', tags: ['Figma', 'Adobe'], image: '/projects/uiux.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/design/HqhsgmEg9OHXiHjzlvk1rp/Userflow-IMK?node-id=0-1' },
   { title: 'Design UI/UX Home gardening Mobile App', description: 'Merancang design UI aplikasi mobile Home Gardening berbasis IoT secara real time.', tags: ['Figma', 'dart', 'Php'], image: '/projects/homgar.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/proto/AnfJauFzqWtu2zQY7EYbEC/Home-Garden?page-id=101%3A1295&node-id=619-3405' },
   { title: 'Design UI/UX Healthmate Mobile App', description: 'Merancang design UI aplikasi mobile Healtmate untuk konsultasi dengan dokter.', tags: ['Figma', 'dart', 'Php'], image: '/projects/health.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/design/ahQTmHMMWA0VBWljx52xbt/Untitled?node-id=0-1' },
-  { title: 'Design UI/UX Funk Kitchen Mobile App', description: 'Merancang design UI aplikasi mobile Funk Kitchen untuk order makanan dine in & pickup.', tags: ['Figma', 'dart', 'Php'], image: '/projects/funk.png', github: 'https://www.figma.com/design/CRNizE7dmZNmg13VmSbc2M/FUNK-KITCHEN?node-id=0-1' },
+  { title: 'Design UI/UX Funk Kitchen Mobile App', description: 'Merancang design UI aplikasi mobile Funk Kitchen untuk order makanan dine in & pickup.', tags: ['Figma', 'dart', 'Php'], image: '/projects/funk.png', github: 'https://github.com/username/fundraising-app', demo: 'https://www.figma.com/design/CRNizE7dmZNmg13VmSbc2M/FUNK-KITCHEN?node-id=0-1' },
 ])
 
 const multimedia = ref([
@@ -136,7 +186,6 @@ const multimedia = ref([
 ])
 
 const scrollToProjects = () => projectSection.value?.scrollIntoView({ behavior: 'smooth' })
-
 const updateOverlay = () => overlayOpacity.value = Math.min(window.scrollY / 600, 0.7)
 
 const handleReveal = () => {

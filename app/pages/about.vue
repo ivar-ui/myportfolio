@@ -184,7 +184,7 @@
 
           <!-- Non-Coding Tools -->
           <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6"> Tools</h3>
+            <h3 class="text-xl font-semibold mb-6"> Editing Tools</h3>
             <div class="grid grid-cols-2 gap-4">
               <div
                 v-for="tool in nonCodingTools"
