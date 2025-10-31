@@ -18,7 +18,13 @@
         ref="fadeEls"
       >
         <div class="w-64 aspect-[1/1]">
-          <img src="/profile.jpeg" alt="Foto Profil" class="w-full h-full object-cover rounded-xl shadow-md" />
+          <img
+            src="/profile.jpeg"
+            alt="Foto Profil"
+            class="w-full h-full object-cover rounded-xl shadow-md transition-opacity duration-700 ease-out opacity-0"
+            :class="{ 'opacity-100': imageLoaded[0] }"
+            @load="handleImageLoad(0)"
+          />
         </div>
         <div class="flex-1">
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
@@ -37,7 +43,7 @@
         <h2 class="text-3xl font-bold">Technical Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <div
-            v-for="tech in technicalSkills"
+            v-for="(tech, index) in technicalSkills"
             :key="tech.name"
             class="group [perspective:1000px]"
           >
@@ -46,7 +52,13 @@
             >
               <!-- FRONT -->
               <div class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 flex flex-col">
-                <img :src="tech.photo" :alt="tech.name" class="w-full h-full object-cover" />
+                <img
+                  :src="tech.photo"
+                  :alt="tech.name"
+                  class="w-full h-full object-cover transition-opacity duration-700 ease-out opacity-0"
+                  :class="{ 'opacity-100': imageLoaded[index + 1] }"
+                  @load="handleImageLoad(index + 1)"
+                />
                 <div class="absolute bottom-0 w-full bg-black/70 py-3 text-center">
                   <p class="font-semibold text-lg text-white">{{ tech.name }}</p>
                 </div>
@@ -184,7 +196,7 @@
 
           <!-- Non-Coding Tools -->
           <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6"> Editing Tools</h3>
+            <h3 class="text-xl font-semibold mb-6">Editing Tools</h3>
             <div class="grid grid-cols-2 gap-4">
               <div
                 v-for="tool in nonCodingTools"
@@ -217,7 +229,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -228,6 +239,13 @@ import { ref, onMounted } from 'vue'
 const hovered = ref('')
 const fadeEls = ref([])
 const showNotif = ref(false)
+
+// ==== FOTO BUFFERING EFEK ====
+const imageLoaded = ref({})
+
+const handleImageLoad = (index) => {
+  imageLoaded.value[index] = true
+}
 
 const technicalSkills = [
   { 
@@ -280,7 +298,6 @@ const codingTools = [
   { name: 'winbox', logo: '/logos/winbox.png', level: 'Intermediate' },
 ]
 
-
 const nonCodingTools = [
   { name: 'Photoshop', logo: '/logos/photoshop.svg', level: 'Intermediate' },
   { name: 'Premiere', logo: '/logos/premiere.svg', level: 'Intermediate' },
@@ -307,6 +324,11 @@ onMounted(() => {
   )
   document.querySelectorAll('.fade-section').forEach(el => observer.observe(el))
   triggerNotif()
+
+  const showPhoto = ref(false)
+  setTimeout(() => {
+    showPhoto.value = true
+  }, 1000)
 })
 </script>
 
@@ -330,4 +352,20 @@ img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s
 .slide-fade-enter-active, .slide-fade-leave-active { transition: all 0.5s ease; }
 .slide-fade-enter-from { opacity: 0; transform: translateY(-20px); }
 .slide-fade-leave-to { opacity: 0; transform: translateY(-20px); }
+
+/* Fade-in buffering untuk gambar */
+img {
+  transition: opacity 0.8s ease-out, transform 0.3s ease;
+  opacity: 0;
+}
+
+img.opacity-100 {
+  opacity: 1;
+  transform: scale(1);
+}
+
+img:not(.opacity-100) {
+  transform: scale(1.05);
+  filter: blur(4px) brightness(0.8);
+}
 </style>
