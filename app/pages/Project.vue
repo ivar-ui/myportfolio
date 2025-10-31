@@ -1,13 +1,9 @@
 <template>
   <!-- Animated Gradient Background -->
-  <div class="fixed inset-0 -z-30 animate-gradient bg-gradient-to-br from-[#2a004f] via-[#0d1a45] to-[#000000]"></div>
+  <div class="fixed inset-0 -z-30 animate-gradient bg-gradient-to-br from-[#000033] via-[#000022] to-[#000000]"></div>
 
-  <!-- Stars Layer -->
-  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-  </div>
+
+  
 
   <!-- Dynamic Overlay -->
   <div
@@ -236,23 +232,5 @@ onBeforeUnmount(() => {
   opacity: 1;
   transform: translateY(0);
 }
-.stars,
-.stars2,
-.stars3 {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background-repeat: repeat;
-  background-size: 50px 50px;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  opacity: 0.2;
-}
-.stars2 {
-  opacity: 0.1;
-  transform: scale(0.5);
-}
-.stars3 {
-  opacity: 0.05;
-  transform: scale(0.25);
-}
+
 </style>
