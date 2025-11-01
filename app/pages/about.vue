@@ -1,5 +1,7 @@
 <template>
-  <section class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black relative overflow-visible">
+  <section
+    class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black relative overflow-visible"
+  >
     <!-- 🔔 Notif -->
     <transition name="slide-fade">
       <div
@@ -11,14 +13,23 @@
       </div>
     </transition>
 
-    <div class="max-w-5xl mx-auto space-y-24 relative overflow-visible">
+    <!-- 🌫️ Overlay Transparan -->
+    <div
+      class="pointer-events-none fixed inset-0 z-[5] bg-black transition-opacity duration-500"
+      :style="{ opacity: overlayOpacity }"
+    ></div>
+
+    <div class="max-w-5xl mx-auto space-y-24 relative overflow-visible z-10">
       <!-- 👤 Tentang Saya -->
       <div
-        class="fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4 overflow-visible relative z-10"
-        ref="fadeEls"
+        class="reveal fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4 overflow-visible"
       >
         <div class="w-64 aspect-[1/1]">
-          <img src="/profile.jpeg" alt="Foto Profil" class="w-full h-full object-cover rounded-xl shadow-md" />
+          <img
+            src="/profile.jpeg"
+            alt="Foto Profil"
+            class="w-full h-full object-cover rounded-xl shadow-md"
+          />
         </div>
         <div class="flex-1">
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
@@ -26,29 +37,37 @@
             Mahasiswa semester 4 dengan minat mendalam dan pengalaman luas di bidang Teknologi Informasi dan Multimedia. 
             Memiliki pengalaman cukup dalam troubleshooting, konfigurasi jaringan komputer, pengelolaan database serta memiliki 
             keahlian dalam pengembangan perangkat lunak web dan mobile, termasuk sistem berbasis Internet of Things (IoT). 
-            Menguasai berbagai bahasa pemrograman seperti html, python, dart, php dan tools relevan. Proaktif dalam mempelajari hal baru, 
+            Menguasai berbagai bahasa pemrograman seperti HTML, Python, Dart, PHP, dan tools relevan. Proaktif dalam mempelajari hal baru, 
             mampu bekerja secara mandiri maupun dalam tim, mampu untuk memanajemen tim, serta berdedikasi untuk mencapai hasil yang optimal.
           </p>
         </div>
       </div>
 
       <!-- 🧠 Technical Skills -->
-      <div class="fade-section text-center space-y-10 opacity-0 translate-y-4 relative z-10 overflow-visible" ref="fadeEls">
+      <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
         <h2 class="text-3xl font-bold">Technical Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <div
             v-for="(tech, index) in technicalSkills"
             :key="tech.name"
-            class="group cursor-pointer"
-            @click="toggleFlip(index)"
+            class="group"
+            @click="isMobile && toggleFlip(index)"
+            @mouseenter="!isMobile && (flippedCards[index] = true)"
+            @mouseleave="!isMobile && (flippedCards[index] = false)"
           >
             <div
               class="relative w-full h-0 pb-[150%] transition-transform duration-700 transform-style-preserve-3d"
               :style="{ transform: flippedCards[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
             >
               <!-- FRONT -->
-              <div class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 flex flex-col">
-                <img :src="tech.photo" :alt="tech.name" class="w-full h-full object-cover" />
+              <div
+                class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 flex flex-col"
+              >
+                <img
+                  :src="tech.photo"
+                  :alt="tech.name"
+                  class="w-full h-full object-cover"
+                />
                 <div class="absolute bottom-0 w-full bg-black/70 py-3 text-center">
                   <p class="font-semibold text-lg text-white">{{ tech.name }}</p>
                 </div>
@@ -60,7 +79,6 @@
               >
                 <p class="font-semibold text-xl mb-3">{{ tech.name }}</p>
 
-                <!-- 🔧 Device Configuration khusus -->
                 <template v-if="tech.name === 'Device Configuration'">
                   <div class="flex flex-col items-center justify-center mt-6">
                     <div class="grid grid-cols-2 gap-4">
@@ -91,9 +109,10 @@
                   </div>
                 </template>
 
-                <!-- Default lainnya -->
                 <template v-else>
-                  <ul class="list-disc list-inside text-sm space-y-1 text-white/80 text-left">
+                  <ul
+                    class="list-disc list-inside text-sm space-y-1 text-white/80 text-left"
+                  >
                     <li v-for="item in tech.details" :key="item">{{ item }}</li>
                   </ul>
                   <div v-if="tech.logos" class="flex flex-wrap gap-3 mt-3 justify-center">
@@ -112,8 +131,8 @@
         </div>
       </div>
 
-      <!-- 💡 Skills -->
-      <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
+      <!-- 💡 Software Skills -->
+      <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
         <h2 class="text-3xl font-bold">Software Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div
@@ -147,7 +166,7 @@
       </div>
 
       <!-- 🧰 Software Tools -->
-      <div class="fade-section text-center space-y-10 opacity-0 translate-y-4" ref="fadeEls">
+      <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
         <h2 class="text-3xl font-bold">Software Tools</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Coding Tools -->
@@ -186,7 +205,7 @@
 
           <!-- Non-Coding Tools -->
           <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6"> Editing Tools</h3>
+            <h3 class="text-xl font-semibold mb-6">Editing Tools</h3>
             <div class="grid grid-cols-2 gap-4">
               <div
                 v-for="tool in nonCodingTools"
@@ -224,45 +243,54 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const hovered = ref('')
-const fadeEls = ref([])
 const showNotif = ref(false)
 const flippedCards = ref([])
+const overlayOpacity = ref(0)
+let ticking = false
+const isMobile = ref(false)
 
+// 🔁 Reveal animation (berulang setiap scroll)
+const handleReveal = () => {
+  const reveals = document.querySelectorAll('.reveal')
+  const windowHeight = window.innerHeight
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top
+    if (top < windowHeight - 100) el.classList.add('active')
+    else el.classList.remove('active')
+  })
+}
+
+// 🌫️ Overlay transparan + scroll smooth (tanpa auto-scroll)
+const updateOverlay = () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      overlayOpacity.value = Math.min(window.scrollY / 800, 0.6)
+      ticking = false
+    })
+    ticking = true
+  }
+}
+
+// Flip manual untuk mobile
 const toggleFlip = (index) => {
   flippedCards.value[index] = !flippedCards.value[index]
 }
 
+// 📋 Data (tetap sama)
 const technicalSkills = [
-  { 
-    name: 'Device Installation', 
-    photo: '/about/install.jpg', 
-    details: ['Access Point', 'Switch', 'Router', 'DVR/NVR', 'CCTV'] 
-  },
-  { 
-    name: 'Device Configuration', 
-    photo: '/about/device.jpg', 
-    details: [],
-    logos: [
-      { name: 'Mikrotik', src: '/logos/mikrotik.png' },
-      { name: 'Ubiquiti', src: '/logos/ubiquiti.png' },
-      { name: 'Ruijie', src: '/logos/ruijie.png' },
-      { name: 'SPC', src: '/logos/spc.jpg' },
-      { name: 'Hikvision', src: '/logos/hikvision.png' }
-    ]
-  },
-  { 
-    name: 'Maintenance', 
-    photo: '/about/maintenance.jpg', 
-    details: ['Splicing Fiber Optic', 'Troubleshoot Jaringan', 'Upgrade Firmware', 'Pembersihan Hardware'] 
-  },
-  { 
-    name: 'CCTV Configuration', 
-    photo: '/about/cctv.jpg', 
-    details: ['Setup Recording', 'Pengaturan Zone', 'Monitoring Remote'] 
-  },
+  { name: 'Device Installation', photo: '/about/install.jpg', details: ['Access Point', 'Switch', 'Router', 'DVR/NVR', 'CCTV'] },
+  { name: 'Device Configuration', photo: '/about/device.jpg', details: [], logos: [
+    { name: 'Mikrotik', src: '/logos/mikrotik.png' },
+    { name: 'Ubiquiti', src: '/logos/ubiquiti.png' },
+    { name: 'Ruijie', src: '/logos/ruijie.png' },
+    { name: 'SPC', src: '/logos/spc.jpg' },
+    { name: 'Hikvision', src: '/logos/hikvision.png' }
+  ]},
+  { name: 'Maintenance', photo: '/about/maintenance.jpg', details: ['Splicing Fiber Optic', 'Troubleshoot Jaringan', 'Upgrade Firmware', 'Pembersihan Hardware'] },
+  { name: 'CCTV Configuration', photo: '/about/cctv.jpg', details: ['Setup Recording', 'Pengaturan Zone', 'Monitoring Remote'] }
 ]
 
 const skills = [
@@ -298,57 +326,40 @@ const triggerNotif = () => {
   setTimeout(() => (showNotif.value = false), 2000)
 }
 
-// 🔁 Fungsi scroll berulang otomatis
-const autoScroll = () => {
-  const scrollSpeed = 0.5 // kecepatan scroll
-  let direction = 1
-
-  const scrollStep = () => {
-    window.scrollBy(0, direction * scrollSpeed)
-    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2
-    const atTop = window.scrollY <= 0
-
-    if (atBottom) direction = -1
-    else if (atTop) direction = 1
-
-    requestAnimationFrame(scrollStep)
-  }
-
-  requestAnimationFrame(scrollStep)
+const handleScroll = () => {
+  updateOverlay()
+  handleReveal()
 }
 
 onMounted(() => {
   flippedCards.value = Array(technicalSkills.length).fill(false)
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-enter')
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.15 }
-  )
-  document.querySelectorAll('.fade-section').forEach(el => observer.observe(el))
   triggerNotif()
-  autoScroll() // 🚀 aktifkan scroll otomatis berulang
+  handleReveal()
+  isMobile.value = window.innerWidth <= 768
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
 <style scoped>
-@keyframes fadeInUp { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
-.animate-fade-in { animation: fadeInUp 0.5s ease forwards; }
-.animate-enter { animation: fadeInUp 0.8s ease forwards; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
+.reveal.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: all 0.8s ease;
+}
+
+.animate-fade-in { animation: fadeInUp 0.5s ease forwards; }
 .backface-hidden { backface-visibility: hidden; }
 .transform-style-preserve-3d { transform-style: preserve-3d; }
-
-.group {
-  perspective: 1000px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
+.group { perspective: 1000px; -webkit-tap-highlight-color: transparent; }
 
 img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s ease; }
 
