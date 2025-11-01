@@ -42,15 +42,15 @@
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="bg-black/20 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal relative"
+          class="bg-white/10 backdrop-blur-md p-5 rounded-xl shadow-lg hover:scale-[1.02] transition-all duration-300 reveal relative"
         >
-          <img :src="project.image" :alt="project.title" class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow" />
+          <img :src="project.image" :alt="project.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ project.title }}</h3>
           <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ project.description }}</p>
 
           <div class="flex justify-between items-center pt-2">
             <div class="flex flex-wrap gap-2">
-              <span v-for="(tag, i) in project.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black">{{ tag }}</span>
+              <span v-for="(tag, i) in project.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">{{ tag }}</span>
             </div>
 
             <div class="flex gap-3">
@@ -86,15 +86,15 @@
         <div
           v-for="(item, index) in uiuxProjects"
           :key="index"
-          class="bg-black/30 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal"
+          class="bg-white/10 backdrop-blur-md p-5 rounded-xl shadow-lg hover:scale-[1.02] transition-all duration-300 reveal"
         >
-          <img :src="item.image" :alt="item.title" class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow" />
+          <img :src="item.image" :alt="item.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ item.title }}</h3>
           <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ item.description }}</p>
 
           <div class="flex justify-between items-center pt-2">
             <div class="flex flex-wrap gap-2">
-              <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black">{{ tag }}</span>
+              <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">{{ tag }}</span>
             </div>
             <div class="flex gap-3">
               <a :href="item.github" target="_blank" class="text-white hover:text-purple-400 transition" title="GitHub">
@@ -129,14 +129,14 @@
         <div
           v-for="(item, index) in multimedia"
           :key="index"
-          class="bg-black/30 backdrop-blur-md p-5 rounded-xl shadow-lg border border-purple-500/30 hover:scale-[1.02] transition-all duration-300 reveal"
+          class="bg-white/10 backdrop-blur-md p-5 rounded-xl shadow-lg hover:scale-[1.02] transition-all duration-300 reveal"
         >
-          <img :src="item.image" :alt="item.title" class="w-full h-40 object-cover rounded-md mb-4 border border-white/10 shadow" />
+          <img :src="item.image" :alt="item.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ item.title }}</h3>
           <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ item.description }}</p>
 
           <div class="flex flex-wrap gap-2 pt-2">
-            <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-purple-300/80 text-black">
+            <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">
               {{ tag }}
             </span>
           </div>
