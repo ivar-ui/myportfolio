@@ -18,13 +18,7 @@
         ref="fadeEls"
       >
         <div class="w-64 aspect-[1/1]">
-          <img
-            src="/profile.jpeg"
-            alt="Foto Profil"
-            class="w-full h-full object-cover rounded-xl shadow-md transition-opacity duration-700 ease-out opacity-0"
-            :class="{ 'opacity-100': imageLoaded[0] }"
-            @load="handleImageLoad(0)"
-          />
+          <img src="/profile.jpeg" alt="Foto Profil" class="w-full h-full object-cover rounded-xl shadow-md" />
         </div>
         <div class="flex-1">
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
@@ -45,20 +39,16 @@
           <div
             v-for="(tech, index) in technicalSkills"
             :key="tech.name"
-            class="group [perspective:1000px]"
+            class="group cursor-pointer"
+            @click="toggleFlip(index)"
           >
             <div
-              class="relative w-full h-0 pb-[150%] transition-transform duration-700 transform-style-preserve-3d group-hover:[transform:rotateY(180deg)]"
+              class="relative w-full h-0 pb-[150%] transition-transform duration-700 transform-style-preserve-3d"
+              :style="{ transform: flippedCards[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
             >
               <!-- FRONT -->
               <div class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 flex flex-col">
-                <img
-                  :src="tech.photo"
-                  :alt="tech.name"
-                  class="w-full h-full object-cover transition-opacity duration-700 ease-out opacity-0"
-                  :class="{ 'opacity-100': imageLoaded[index + 1] }"
-                  @load="handleImageLoad(index + 1)"
-                />
+                <img :src="tech.photo" :alt="tech.name" class="w-full h-full object-cover" />
                 <div class="absolute bottom-0 w-full bg-black/70 py-3 text-center">
                   <p class="font-semibold text-lg text-white">{{ tech.name }}</p>
                 </div>
@@ -75,7 +65,7 @@
                   <div class="flex flex-col items-center justify-center mt-6">
                     <div class="grid grid-cols-2 gap-4">
                       <img
-                        v-for="(logo, index) in tech.logos.slice(0, 4)"
+                        v-for="(logo, index2) in tech.logos.slice(0, 4)"
                         :key="logo.name"
                         :src="logo.src"
                         :alt="logo.name"
@@ -196,7 +186,7 @@
 
           <!-- Non-Coding Tools -->
           <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6">Editing Tools</h3>
+            <h3 class="text-xl font-semibold mb-6"> Editing Tools</h3>
             <div class="grid grid-cols-2 gap-4">
               <div
                 v-for="tool in nonCodingTools"
@@ -229,6 +219,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 </template>
@@ -239,12 +230,10 @@ import { ref, onMounted } from 'vue'
 const hovered = ref('')
 const fadeEls = ref([])
 const showNotif = ref(false)
+const flippedCards = ref([])
 
-// ==== FOTO BUFFERING EFEK ====
-const imageLoaded = ref({})
-
-const handleImageLoad = (index) => {
-  imageLoaded.value[index] = true
+const toggleFlip = (index) => {
+  flippedCards.value[index] = !flippedCards.value[index]
 }
 
 const technicalSkills = [
@@ -311,6 +300,7 @@ const triggerNotif = () => {
 }
 
 onMounted(() => {
+  flippedCards.value = Array(technicalSkills.length).fill(false)
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -324,11 +314,6 @@ onMounted(() => {
   )
   document.querySelectorAll('.fade-section').forEach(el => observer.observe(el))
   triggerNotif()
-
-  const showPhoto = ref(false)
-  setTimeout(() => {
-    showPhoto.value = true
-  }, 1000)
 })
 </script>
 
@@ -339,6 +324,12 @@ onMounted(() => {
 
 .backface-hidden { backface-visibility: hidden; }
 .transform-style-preserve-3d { transform-style: preserve-3d; }
+
+.group {
+  perspective: 1000px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
 
 img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s ease; }
 
@@ -352,20 +343,4 @@ img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s
 .slide-fade-enter-active, .slide-fade-leave-active { transition: all 0.5s ease; }
 .slide-fade-enter-from { opacity: 0; transform: translateY(-20px); }
 .slide-fade-leave-to { opacity: 0; transform: translateY(-20px); }
-
-/* Fade-in buffering untuk gambar */
-img {
-  transition: opacity 0.8s ease-out, transform 0.3s ease;
-  opacity: 0;
-}
-
-img.opacity-100 {
-  opacity: 1;
-  transform: scale(1);
-}
-
-img:not(.opacity-100) {
-  transform: scale(1.05);
-  filter: blur(4px) brightness(0.8);
-}
 </style>
