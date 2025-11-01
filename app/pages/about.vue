@@ -219,7 +219,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -299,6 +298,25 @@ const triggerNotif = () => {
   setTimeout(() => (showNotif.value = false), 2000)
 }
 
+// 🔁 Fungsi scroll berulang otomatis
+const autoScroll = () => {
+  const scrollSpeed = 0.5 // kecepatan scroll
+  let direction = 1
+
+  const scrollStep = () => {
+    window.scrollBy(0, direction * scrollSpeed)
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2
+    const atTop = window.scrollY <= 0
+
+    if (atBottom) direction = -1
+    else if (atTop) direction = 1
+
+    requestAnimationFrame(scrollStep)
+  }
+
+  requestAnimationFrame(scrollStep)
+}
+
 onMounted(() => {
   flippedCards.value = Array(technicalSkills.length).fill(false)
   const observer = new IntersectionObserver(
@@ -314,6 +332,7 @@ onMounted(() => {
   )
   document.querySelectorAll('.fade-section').forEach(el => observer.observe(el))
   triggerNotif()
+  autoScroll() // 🚀 aktifkan scroll otomatis berulang
 })
 </script>
 
