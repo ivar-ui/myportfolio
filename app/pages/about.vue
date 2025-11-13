@@ -79,31 +79,16 @@
               >
                 <p class="font-semibold text-xl mb-3">{{ tech.name }}</p>
 
+                <!-- ✅ Device Configuration: Logo sejajar 2x2x2 -->
                 <template v-if="tech.name === 'Device Configuration'">
-                  <div class="flex flex-col items-center justify-center mt-6">
+                  <div class="flex flex-col items-center justify-center mt-6 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                       <img
-                        v-for="(logo, index2) in tech.logos.slice(0, 4)"
+                        v-for="(logo, index2) in tech.logos"
                         :key="logo.name"
                         :src="logo.src"
                         :alt="logo.name"
-                        :class="[
-                          'object-contain',
-                          logo.name === 'Ubiquiti' || logo.name === 'Hikvision'
-                            ? 'h-20 w-20'
-                            : 'h-16 w-16'
-                        ]"
-                      />
-                    </div>
-                    <div class="mt-4">
-                      <img
-                        v-if="tech.logos.length > 4"
-                        :src="tech.logos[4].src"
-                        :alt="tech.logos[4].name"
-                        :class="[
-                          'object-contain',
-                          tech.logos[4].name === 'Hikvision' ? 'h-20 w-20' : 'h-16 w-16'
-                        ]"
+                        class="object-contain h-16 w-16"
                       />
                     </div>
                   </div>
@@ -252,7 +237,6 @@ const overlayOpacity = ref(0)
 let ticking = false
 const isMobile = ref(false)
 
-// 🔁 Reveal animation (berulang setiap scroll)
 const handleReveal = () => {
   const reveals = document.querySelectorAll('.reveal')
   const windowHeight = window.innerHeight
@@ -263,7 +247,6 @@ const handleReveal = () => {
   })
 }
 
-// 🌫️ Overlay transparan + scroll smooth (tanpa auto-scroll)
 const updateOverlay = () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
@@ -274,18 +257,17 @@ const updateOverlay = () => {
   }
 }
 
-// Flip manual untuk mobile
 const toggleFlip = (index) => {
   flippedCards.value[index] = !flippedCards.value[index]
 }
 
-// 📋 Data (tetap sama)
 const technicalSkills = [
   { name: 'Device Installation', photo: '/about/install.jpg', details: ['Access Point', 'Switch', 'Router', 'DVR/NVR', 'CCTV'] },
   { name: 'Device Configuration', photo: '/about/device.jpg', details: [], logos: [
     { name: 'Mikrotik', src: '/logos/mikrotik.png' },
     { name: 'Ubiquiti', src: '/logos/ubiquiti.png' },
     { name: 'Ruijie', src: '/logos/ruijie.png' },
+    { name: 'HPE', src: '/logos/hpe.png' },
     { name: 'SPC', src: '/logos/spc.jpg' },
     { name: 'Hikvision', src: '/logos/hikvision.png' }
   ]},
@@ -349,27 +331,21 @@ onBeforeUnmount(() => {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 .reveal.active {
   opacity: 1 !important;
   transform: translateY(0) !important;
   transition: all 0.8s ease;
 }
-
 .animate-fade-in { animation: fadeInUp 0.5s ease forwards; }
 .backface-hidden { backface-visibility: hidden; }
 .transform-style-preserve-3d { transform-style: preserve-3d; }
 .group { perspective: 1000px; -webkit-tap-highlight-color: transparent; }
-
 img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s ease; }
-
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); border-radius: 9999px; border: 2px solid transparent; background-clip: content-box; transition: background-color 0.3s ease; }
 ::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.4); }
-
 * { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.2) transparent; }
-
 .slide-fade-enter-active, .slide-fade-leave-active { transition: all 0.5s ease; }
 .slide-fade-enter-from { opacity: 0; transform: translateY(-20px); }
 .slide-fade-leave-to { opacity: 0; transform: translateY(-20px); }
