@@ -1,14 +1,11 @@
 <template>
-  <!-- Animated Gradient Background -->
   <div class="fixed inset-0 -z-30 animate-gradient bg-gradient-to-br from-[#000033] via-[#000022] to-[#000000]"></div>
 
-  <!-- Dynamic Overlay -->
   <div
     class="fixed inset-0 -z-5 pointer-events-none transition-opacity duration-300"
     :style="{ backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})` }"
   ></div>
 
-  <!-- Hero Section -->
   <section class="h-screen flex flex-col items-center justify-center text-center text-white space-y-6 animate-fade-in">
     <h1 class="text-5xl md:text-6xl font-bold">My Project</h1>
     <p class="text-gray-300 text-lg">Scroll down to see all my works</p>
@@ -19,14 +16,12 @@
     </button>
   </section>
 
-  <!-- Main Content -->
   <main
     v-if="showContent"
     ref="projectSection"
     class="relative z-10 min-h-screen px-4 py-20 text-white max-w-6xl mx-auto animate-fade-up"
   >
     <div class="space-y-16">
-      <!-- Teknologi Informasi -->
       <section class="text-center space-y-4">
         <h1 class="text-4xl md:text-5xl font-bold">Teknologi Informasi</h1>
         <p class="text-lg max-w-2xl mx-auto text-gray-300">
@@ -34,20 +29,19 @@
         </p>
       </section>
 
-      <!-- Project Cards -->
       <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal relative"
+          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal relative flex flex-col"
         >
           <img :src="project.image" :alt="project.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ project.title }}</h3>
-          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ project.description }}</p>
+          <p class="text-sm text-gray-300 mb-6">{{ project.description }}</p>
 
-          <div class="flex justify-between items-center pt-2">
-            <div class="flex flex-wrap gap-2">
-              <span v-for="(tag, i) in project.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">{{ tag }}</span>
+          <div class="flex justify-between items-end pt-2 mt-auto">
+            <div class="flex gap-2 overflow-x-auto pb-1" style="max-width: 80%;">
+              <span v-for="(tag, i) in project.tags" :key="i" class="flex-shrink-0 px-2 py-1 text-xs rounded-full bg-white text-black">{{ tag }}</span>
             </div>
 
             <div class="flex gap-3">
@@ -69,8 +63,6 @@
           </div>
         </div>
       </section>
-
-      <!-- UI/UX Project Section -->
       <section class="text-center space-y-4 pt-10">
         <h2 class="text-3xl md:text-4xl font-bold">UI/UX Project</h2>
         <p class="text-lg max-w-2xl mx-auto text-gray-300">
@@ -78,24 +70,22 @@
         </p>
       </section>
 
-      <!-- UI/UX Project Cards -->
       <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           v-for="(item, index) in uiuxProjects"
           :key="index"
-          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal"
+          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal flex flex-col"
         >
           <img :src="item.image" :alt="item.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ item.title }}</h3>
-          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ item.description }}</p>
+          <p class="text-sm text-gray-300 mb-6">{{ item.description }}</p>
 
-          <div class="flex flex-wrap gap-2 pt-2">
+          <div class="flex flex-wrap gap-2 pt-2 mt-auto">
             <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">{{ tag }}</span>
           </div>
-        </div>
+          </div>
       </section>
 
-      <!-- Multimedia Section -->
       <section class="text-center space-y-4 pt-10">
         <h2 class="text-3xl md:text-4xl font-bold">Multimedia</h2>
         <p class="text-lg max-w-2xl mx-auto text-gray-300">
@@ -103,23 +93,22 @@
         </p>
       </section>
 
-      <!-- Multimedia Cards -->
       <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           v-for="(item, index) in multimedia"
           :key="index"
-          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal"
+          class="bg-gray-900/90 backdrop-blur-md p-5 rounded-xl border border-white/20 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 reveal flex flex-col"
         >
           <img :src="item.image" :alt="item.title" class="w-full h-56 object-cover rounded-md mb-4 border border-white/10 shadow" />
           <h3 class="text-xl font-semibold mb-2 min-h-[56px]">{{ item.title }}</h3>
-          <p class="text-sm text-gray-300 mb-6 min-h-[72px]">{{ item.description }}</p>
+          <p class="text-sm text-gray-300 mb-6">{{ item.description }}</p>
 
-          <div class="flex flex-wrap gap-2 pt-2">
+          <div class="flex flex-wrap gap-2 pt-2 mt-auto">
             <span v-for="(tag, i) in item.tags" :key="i" class="px-2 py-1 text-xs rounded-full bg-white text-black">
               {{ tag }}
             </span>
           </div>
-        </div>
+          </div>
       </section>
     </div>
   </main>
@@ -133,13 +122,13 @@ const projectSection = ref<HTMLElement | null>(null)
 const overlayOpacity = ref(0)
 
 const projects = ref([
-  { title: 'Pemasangan CCTV baru Auditorium BG Munaf Dept. Teknik Perkapalan ITS', description: 'Melakukan penarikan kabel UTP sebanyak 8 buah, melakukan konfigurasi Network Digital Recorder, dan Pemasangan kamera CCTV, serta melakukan konfigurasi untuk monitoring remote CCTV ', tags: ['DVR/NVR', 'Config', 'Network'], image: '/projects/perkapalanits.jpg'},
-  { title: 'Pemindahan dan Membangun Ulang Jaringan Komputer Dept. Teknik Mesin ITS', description: 'Melakukan pemindahan Wall Mounted Rack serta melakukan pembaruan yang meliputi penarikan fiber optic dan kabel UTP, melakukan splicing kabel Fiber Optic, melakukan pemasangan switch manageable dan konfigurasi jaringan komputer yang baru dirancang', tags: ['Config', 'Network', 'Switch'], image: '/projects/mesinits.jpg'},
-  { title: 'Project Dir. Pengelolaan Infrastruktur, Lingkungan, dan Operasional UNAIR ', description: 'Membangun jaringan komputer pada ruangan baru, pekerjaan meliputi pemasangan kabel kelistrikan, penarikan kabel fiber optik, splicing kabel fiber optic, penarikan kabel UTP sebanyak 40 buah, dan pemasangan switch manageable', tags: ['Network', 'Config', 'Troubleshoot'], image: '/projects/kahuripanlt3.jpg'},
-  { title: 'Project Jaringan Komputer Laboratorium Komputer Fakultas FISIP UNAIR', description: 'Membangun jaringan komputer untuk Lab Komputer, pengerjaan diantara lain adalah melakukan splicing Fiber Optik untuk backbone internet, penarikan kabel UTP sebanyak 40 buah, memasang Switch Manageable, merakit dan konfigurasi 40 buah PC', tags: ['Network', 'Config', 'Switch'], image: '/projects/fisipunair.jpg'},
+  { title: 'Pemasangan CCTV baru Auditorium BG Munaf Dept. Teknik Perkapalan ITS', description: 'Melakukan penarikan kabel UTP sebanyak 8 buah, melakukan konfigurasi Network Digital Recorder, dan Pemasangan kamera CCTV, serta melakukan konfigurasi untuk monitoring remote CCTV ', tags: ['DVR/NVR', 'Config', 'Networking'], image: '/projects/perkapalanits.jpg', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
+  { title: 'Pemindahan dan Membangun Ulang Jaringan Komputer Dept. Teknik Mesin ITS', description: 'Melakukan pemindahan Wall Mounted Rack serta melakukan pembaruan yang meliputi penarikan fiber optic dan kabel UTP, melakukan splicing kabel Fiber Optic, melakukan pemasangan switch manageable dan konfigurasi jaringan komputer yang baru dirancang', tags: ['Config', 'Networking', 'Switch'], image: '/projects/mesinits.jpg', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
+  { title: 'Project Dir. Pengelolaan Infrastruktur, Lingkungan, dan Operasional UNAIR ', description: 'Membangun jaringan komputer pada ruangan baru, pekerjaan meliputi pemasangan kabel kelistrikan, penarikan kabel fiber optik, splicing kabel fiber optic, penarikan kabel UTP sebanyak 40 buah, dan pemasangan switch manageable', tags: ['Networking', 'Config', 'Troubleshoot'], image: '/projects/kahuripanlt3.jpg', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
+  { title: 'Project Jaringan Komputer Laboratorium Komputer Fakultas FISIP UNAIR', description: 'Membangun jaringan komputer untuk Lab Komputer, pengerjaan diantara lain adalah melakukan splicing Fiber Optik untuk backbone internet, penarikan kabel UTP sebanyak 40 buah, memasang Switch Manageable, merakit dan konfigurasi 40 buah PC', tags: ['Network', 'Config', 'Switch'], image: '/projects/fisipunair.jpg', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
   { title: 'Fundraising Mobile App', description: 'Merancang backend aplikasi mobile Fundraising menggunakan Flutter yang terintegrasi dengan website Fundraising berbasis laravel.', tags: ['Flutter', 'Laravel', 'MySQL'], image: '/projects/donasi.png', github: 'https://github.com/ivar-ui/kitabantu_mobile', demo: 'https://your-demo-link.com/fundraising-app' },
   { title: 'YukRental, Motorcycle Rent Website', description: 'Merancang backend CRUD website rental yang dapat diakses oleh customer dan admin menggunakan MySql Database.', tags: ['Html', 'Php', 'Bootstrap'], image: '/projects/yukrental.png', github: 'https://github.com/ivar-ui/yukrental', demo: 'https://ivardeploy.great-site.net/csyukrental/' },
-  { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/iot.png', github: 'https://github.com/ivar-ui/garbage_filtering_sistem', demo: 'https://github.com/ivar-ui/garbage_filtering_sistem' },
+  { title: 'Garbage Filtering System Website', description: 'Merancang dan mengembangkan sistem IoT yang dapat diakses melalui website menggunakan database yang telah terintegrasi dengan sensor dan arduino.', tags: ['Arduino', 'C++', 'Php', 'IoT'], image: '/projects/iot.png', github: 'https://github.com/ivar-ui/garbage_filtering_sistem', demo: 'https://github.com/ivar-ui/garbage_filtering_sistem' },
   { title: 'Frent Agriculture Website', description: 'Merancang dan mengembangkan website rental dan jual beli produk pertanian berbasis Internet of Things.', tags: ['Arduino', 'C++', 'Php'], image: '/projects/frent.png', github: 'https://github.com/ivar-ui/frentagricult', demo: 'https://frentagricult.netlify.app/' },
 ])
 
@@ -226,5 +215,17 @@ onBeforeUnmount(() => {
 
 .hover\:shadow-2xl:hover {
   box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+}
+
+/* Custom scrollbar for horizontal tag scrolling */
+.overflow-x-auto::-webkit-scrollbar {
+    height: 4px;
+}
+.overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+.overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
 }
 </style>

@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 // ==== TYPING EFFECT ====
 const typingText = ref('')
-const textsToType = ['Ivan AryaPutra', 'Network Engineer', 'Portfolio Page']
+const textsToType = ['Ivan AryaPutra', 'Junior Network Engineer', 'Portfolio Page']
 let textIndex = 0
 let charIndex = 0
 let typingInterval

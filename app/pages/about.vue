@@ -2,7 +2,6 @@
   <section
     class="min-h-screen px-6 py-24 text-white bg-gradient-to-b from-[#0f172a] to-black relative overflow-visible"
   >
-    <!-- 🔔 Notif -->
     <transition name="slide-fade">
       <div
         v-if="showNotif"
@@ -13,20 +12,18 @@
       </div>
     </transition>
 
-    <!-- 🌫️ Overlay Transparan -->
     <div
       class="pointer-events-none fixed inset-0 z-[5] bg-black transition-opacity duration-500"
       :style="{ opacity: overlayOpacity }"
     ></div>
 
     <div class="max-w-5xl mx-auto space-y-24 relative overflow-visible z-10">
-      <!-- 👤 Tentang Saya -->
       <div
         class="reveal fade-section flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-2xl shadow-xl opacity-0 translate-y-4 overflow-visible"
       >
         <div class="w-64 aspect-[1/1]">
           <img
-            src="/profile.jpeg"
+            src="/newpp.jpg"
             alt="Foto Profil"
             class="w-full h-full object-cover rounded-xl shadow-md"
           />
@@ -34,16 +31,11 @@
         <div class="flex-1">
           <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
           <p class="text-white/80 leading-relaxed">
-            Mahasiswa semester 4 dengan minat mendalam dan pengalaman luas di bidang Teknologi Informasi dan Multimedia. 
-            Memiliki pengalaman cukup dalam troubleshooting, konfigurasi jaringan komputer, pengelolaan database serta memiliki 
-            keahlian dalam pengembangan perangkat lunak web dan mobile, termasuk sistem berbasis Internet of Things (IoT). 
-            Menguasai berbagai bahasa pemrograman seperti HTML, Python, Dart, PHP, dan tools relevan. Proaktif dalam mempelajari hal baru, 
-            mampu bekerja secara mandiri maupun dalam tim, mampu untuk memanajemen tim, serta berdedikasi untuk mencapai hasil yang optimal.
+            Saya adalah mahasiswa semester akhir Teknologi Informasi yang memiliki pengalaman dalam bidang jaringan komputer. Saya memiliki pengalaman tentang instalasi, pengelolaan dan troubleshooting jaringan, konfigurasi routing dan switching, konfigurasi CCTV, pengembangan perangkat IoT, dan virtualisasi cloud. Saya sangat termotivasi untuk terus belajar dan mengikuti perkembangan teknologi informasi, selain itu saya memiliki sertifikasi di bidang jaringan yang akan mendukung kemampuan saya untuk berkontribusi dalam tim IT untuk mendukung pencapaian tujuan perusahaan.
           </p>
         </div>
       </div>
 
-      <!-- 🧠 Technical Skills -->
       <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
         <h2 class="text-3xl font-bold">Technical Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -59,7 +51,6 @@
               class="relative w-full h-0 pb-[150%] transition-transform duration-700 transform-style-preserve-3d"
               :style="{ transform: flippedCards[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
             >
-              <!-- FRONT -->
               <div
                 class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 flex flex-col"
               >
@@ -73,14 +64,12 @@
                 </div>
               </div>
 
-              <!-- BACK -->
               <div
                 class="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl bg-white/10 text-white p-4 [transform:rotateY(180deg)] flex flex-col justify-center items-center"
               >
                 <p class="font-semibold text-xl mb-3">{{ tech.name }}</p>
 
-                <!-- ✅ Device Configuration: Logo sejajar 2x2x2 -->
-                <template v-if="tech.name === 'Device Configuration'">
+                <template v-if="tech.name === 'Device Installation'">
                   <div class="flex flex-col items-center justify-center mt-6 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                       <img
@@ -116,7 +105,6 @@
         </div>
       </div>
 
-      <!-- 💡 Software Skills -->
       <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
         <h2 class="text-3xl font-bold">Software Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -150,75 +138,34 @@
         </div>
       </div>
 
-      <!-- 🧰 Software Tools -->
       <div class="reveal fade-section text-center space-y-10 opacity-0 translate-y-4">
-        <h2 class="text-3xl font-bold">Software Tools</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Coding Tools -->
-          <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6">Config Tools</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <div
-                v-for="tool in codingTools"
-                :key="tool.name"
-                class="relative group overflow-hidden rounded-xl cursor-pointer bg-white/10 p-3"
-                @mouseenter="hovered = tool.name"
-                @mouseleave="hovered = ''"
-              >
-                <div
-                  class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
-                  :class="{ 'translate-x-full': hovered === tool.name }"
-                ></div>
+        <h2 class="text-3xl font-bold">Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div
+            v-for="tool in allTools"
+            :key="tool.name"
+            class="relative group overflow-hidden rounded-xl cursor-pointer"
+            @mouseenter="hovered = tool.name"
+            @mouseleave="hovered = ''"
+          >
+            <div
+              class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
+              :class="{ 'translate-x-full': hovered === tool.name }"
+            ></div>
 
-                <div
-                  class="relative z-10 flex items-center gap-3 transition-opacity duration-300"
-                  :class="{ 'opacity-0': hovered === tool.name }"
-                >
-                  <img :src="tool.logo" :alt="tool.name" class="w-8 h-8 object-contain" />
-                  <span class="text-white">{{ tool.name }}</span>
-                </div>
-
-                <div
-                  v-if="hovered === tool.name"
-                  class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
-                >
-                  <p class="text-white-400 text-sm font-semibold">{{ tool.level }}</p>
-                </div>
-              </div>
+            <div
+              class="relative z-10 flex items-center gap-4 p-4 transition-opacity duration-300"
+              :class="{ 'opacity-0': hovered === tool.name }"
+            >
+              <img :src="tool.logo" :alt="tool.name" class="h-12 w-12 object-contain" />
+              <p class="font-semibold text-lg">{{ tool.name }}</p>
             </div>
-          </div>
 
-          <!-- Non-Coding Tools -->
-          <div class="bg-white/10 rounded-2xl shadow-xl p-6 h-full">
-            <h3 class="text-xl font-semibold mb-6">Editing Tools</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <div
-                v-for="tool in nonCodingTools"
-                :key="tool.name"
-                class="relative group overflow-hidden rounded-xl cursor-pointer bg-white/10 p-3"
-                @mouseenter="hovered = tool.name"
-                @mouseleave="hovered = ''"
-              >
-                <div
-                  class="absolute inset-0 bg-white/10 transition-transform duration-500 ease-in-out"
-                  :class="{ 'translate-x-full': hovered === tool.name }"
-                ></div>
-
-                <div
-                  class="relative z-10 flex items-center gap-3 transition-opacity duration-300"
-                  :class="{ 'opacity-0': hovered === tool.name }"
-                >
-                  <img :src="tool.logo" :alt="tool.name" class="w-8 h-8 object-contain" />
-                  <span class="text-white">{{ tool.name }}</span>
-                </div>
-
-                <div
-                  v-if="hovered === tool.name"
-                  class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
-                >
-                  <p class="text-white-400 text-sm font-semibold">{{ tool.level }}</p>
-                </div>
-              </div>
+            <div
+              v-if="hovered === tool.name"
+              class="absolute inset-0 bg-white/20 flex items-center justify-center z-10 opacity-0 animate-fade-in"
+            >
+              <p class="text-white-400 text-sm font-semibold">{{ tool.level }}</p>
             </div>
           </div>
         </div>
@@ -228,7 +175,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 const hovered = ref('')
 const showNotif = ref(false)
@@ -262,8 +209,8 @@ const toggleFlip = (index) => {
 }
 
 const technicalSkills = [
-  { name: 'Device Installation', photo: '/about/install.jpg', details: ['Access Point', 'Switch', 'Router', 'DVR/NVR', 'CCTV'] },
-  { name: 'Device Configuration', photo: '/about/device.jpg', details: [], logos: [
+  { name: 'Device Configuration', photo: '/about/device.jpg', details: ['Routing', 'Switching', 'Radio P2P', 'Virtualization', 'Firewall', 'Data Backup'] },
+  { name: 'Device Installation', photo: '/about/install.jpg', details: [], logos: [
     { name: 'Mikrotik', src: '/logos/mikrotik.png' },
     { name: 'Ubiquiti', src: '/logos/ubiquiti.png' },
     { name: 'Ruijie', src: '/logos/ruijie.png' },
@@ -271,32 +218,31 @@ const technicalSkills = [
     { name: 'SPC', src: '/logos/spc.jpg' },
     { name: 'Hikvision', src: '/logos/hikvision.png' }
   ]},
-  { name: 'Maintenance', photo: '/about/maintenance.jpg', details: ['Splicing Fiber Optic', 'Troubleshoot Jaringan', 'Upgrade Firmware', 'Pembersihan Hardware'] },
-  { name: 'CCTV Configuration', photo: '/about/cctv.jpg', details: ['Setup Recording', 'Pengaturan Zone', 'Monitoring Remote'] }
+  { name: 'Maintenance', photo: '/about/maintenance.jpg', details: ['Splicing Fiber Optic', 'Troubleshoot Jaringan', 'Upgrade Firmware', 'Reinstalasi Device'] },
+  { name: 'CCTV Installation', photo: '/about/cctv.jpg', details: ['Konfigurasi Ip Camera', 'Setup Network Video Recorder', 'Pengaturan Zone Pointing', 'Monitoring Remote'] }
 ]
 
 const skills = [
-  { name: 'Next.Js', logo: '/logos/nextjs.svg', level: 'Intermediate' },
   { name: 'JavaScript', logo: '/logos/javascript.svg', level: 'Intermediate' },
   { name: 'Python', logo: '/logos/python.svg', level: 'Intermediate' },
   { name: 'PHP', logo: '/logos/php.svg', level: 'Intermediate' },
   { name: 'Flutter', logo: '/logos/flutter.svg', level: 'Beginner' },
-  { name: 'Vue.Js', logo: '/logos/vue.svg', level: 'Beginner' },
   { name: 'C++', logo: '/logos/c.svg', level: 'Intermediate' },
-  { name: 'Golang', logo: '/logos/golang.svg', level: 'Beginner' },
   { name: 'Laravel', logo: '/logos/laravel.svg', level: 'Intermediate' },
 ]
 
-const codingTools = [
+// 🚀 Tools digabungkan menjadi satu array tunggal
+const allTools = [
+  // ConfigTools
   { name: 'VSCode', logo: '/logos/vscode.svg', level: 'Intermediate' },
   { name: 'MySQL', logo: '/logos/mysql.svg', level: 'Intermediate' },
   { name: 'Postman', logo: '/logos/postman.svg', level: 'Beginner' },
   { name: 'Git', logo: '/logos/github.svg', level: 'Intermediate' },
   { name: 'GNS3', logo: '/logos/gns3.png', level: 'Intermediate' },
-  { name: 'winbox', logo: '/logos/winbox.png', level: 'Intermediate' },
-]
-
-const nonCodingTools = [
+  { name: 'Winbox', logo: '/logos/winbox.png', level: 'Intermediate' },
+  { name: 'Proxmox', logo: '/logos/proxmox.png', level: 'Intermediate' },
+  { name: 'PuTTY', logo: '/logos/putty.png', level: 'Intermediate' },
+  // multimed Tools
   { name: 'Photoshop', logo: '/logos/photoshop.svg', level: 'Intermediate' },
   { name: 'Premiere', logo: '/logos/premiere.svg', level: 'Intermediate' },
   { name: 'Lightroom', logo: '/logos/lightroom.svg', level: 'Intermediate' },
