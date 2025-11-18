@@ -14,6 +14,24 @@ export default defineNuxtConfig({
 
   },
 
+  // ⚙️ KONFIGURASI APP HEAD UNTUK LOGO DAN JUDUL
+  app: {
+    head: {
+      // (Opsional) Mengatur Judul Web
+      title: 'Ivan Portfolio*s', 
+      
+      // Mengatur Favicon menggunakan portfolio.png
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/portfolio.png', // Menunjuk ke file di folder public/
+        }
+      ],
+    }
+  },
+  // ------------------------------------------
+
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
