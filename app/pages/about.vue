@@ -251,7 +251,7 @@ const allTools = [
 
 const triggerNotif = () => {
   showNotif.value = true
-  setTimeout(() => (showNotif.value = false), 2000)
+  setTimeout(() => (showNotif.value = false), 5000)
 }
 
 const handleScroll = () => {
