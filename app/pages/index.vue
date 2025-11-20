@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// ==== TYPING EFFECT ====
+// typing effect
 const typingText = ref('')
 const textsToType = ['Ivan AryaPutra', 'Junior Network Engineer', 'Portfolio Page']
 let textIndex = 0
@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-wave-gradient px-4 sm:px-6 md:px-10">
-    <!-- Hero Content -->
+    <!-- content-->
     <div class="flex flex-col items-center text-center space-y-8 w-full max-w-lg md:max-w-3xl">
       <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold min-h-[3rem] text-white">
         {{ typingText }}
