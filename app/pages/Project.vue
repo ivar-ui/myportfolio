@@ -124,7 +124,7 @@
           <div :class="['project-content absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/60 to-transparent text-white transition-opacity duration-300 md:group-hover:opacity-0 z-10 flex flex-col justify-end min-h-[80px]', { 'opacity-0': isMobile && activeProjectIndex === index && activeProjectCategory === 'projects' }]">
             <h3 class="text-lg font-semibold mb-1 leading-tight">{{ project.title }}</h3>
             <button v-if="isMobile" class="text-purple-400 hover:text-purple-300 text-sm focus:outline-none mt-1" @click.stop="handleCardClick(index, 'projects')">See More</button> 
-            <span v-else class="text-purple-400 text-sm focus:outline-none mt-1">Hover to see details</span>
+            <span v-else class="text-purple-400 text-sm focus:outline-none mt-1">See More</span>
           </div>
 
           <div class="project-overlay absolute inset-x-0 bottom-0 h-3/4 bg-gray-950/95 backdrop-blur-sm p-6 rounded-b-xl border-t border-white/20 flex flex-col transition-transform duration-500 ease-out translate-y-full md:group-hover:translate-y-0 z-20">
